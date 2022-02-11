@@ -1,0 +1,15 @@
+<app-card card-title="Example chart" title-tooltip="wow! an example!" [h]="40">
+    <div class="h-100">
+        <ngx-charts-pie-chart
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        [legend]="showLegend"
+        [legendPosition]="legendPosition"
+        [doughnut]="doughnut"
+        (select)="onSelect($event)"
+      >
+    </ngx-charts-pie-chart>
+    </div>
+  </app-card>
+  
