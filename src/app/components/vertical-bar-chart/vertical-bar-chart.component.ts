@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
-import { HttpHeaders } from '@angular/common/http';
 import { ChartsService } from '../../charts.service';
 
 @Component({
@@ -30,10 +29,6 @@ export class VerticalBarChartComponent implements OnInit {
     name: 'daScheme',
     selectable: true,
     domain: ['#2E5EA7', '#64B5F6', '#26A69A', '#FBC02D'],
-  };
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
   constructor(private chartsService: ChartsService) {}

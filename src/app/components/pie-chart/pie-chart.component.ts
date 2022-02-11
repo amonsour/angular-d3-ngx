@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
-import { HttpHeaders } from '@angular/common/http';
 import { ChartsService } from '../../charts.service';
 
 @Component({
@@ -28,10 +27,6 @@ export class PieChartComponent implements OnInit {
     name: 'daScheme',
     selectable: true,
     domain: ['#0D47A1', '#F57F17'],
-  };
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(
