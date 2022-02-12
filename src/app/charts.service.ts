@@ -13,6 +13,7 @@ export class ChartsService {
   private dataUrl = 'api/data';  // URL to web api
   private deviceUrl = 'api/device';  // URL to web api
   private satisfiedUrl = 'api/satisfied';  // URL to web api
+  private groupsUrl = 'api/groups';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -32,6 +33,10 @@ export class ChartsService {
 
   getSatisfied(): Observable<Satisfied[]> {
     return this.http.get<Satisfied[]>(this.satisfiedUrl)
+  }
+
+  getGroups(): Observable<Data[]> {
+    return this.http.get<Data[]>(this.groupsUrl)
   }
 
   // /** GET hero by id. Return `undefined` when id not found */

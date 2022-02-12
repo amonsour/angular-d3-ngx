@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; //<-- copy this.
 
 import { NgbPopoverModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -14,6 +15,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { CardComponent } from './components/card/card.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { GroupedVerticalBarChartComponent } from './components/grouped-vertical-bar-chart/grouped-vertical-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,11 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     HorizontalBarChartComponent,
     CardComponent,
     PieChartComponent,
+    GroupedVerticalBarChartComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests

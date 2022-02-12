@@ -1,0 +1,22 @@
+<app-card card-title="Grouped Vertical Bar Graph" title-tooltip="cool!" [h]="40">
+    <div class="h-100">
+      <ngx-charts-bar-vertical-2d
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [legendPosition]="legendPosition"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [roundEdges]="roundEdges"
+        [barPadding]="barPadding"
+        (select)="onSelect($event)"
+      >
+      </ngx-charts-bar-vertical-2d>
+    </div>
+  </app-card>
+  
