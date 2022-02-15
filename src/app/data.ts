@@ -117,7 +117,7 @@ export const LINECHART: lineChart[] = [
 export const BARCHART: barChart[] = [
   {
     name: 'USA',
-    value: 512367800
+    value: 51236
   },
   {
     name: 'United Kingdom',
