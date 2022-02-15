@@ -1,18 +1,31 @@
-<app-card card-title="Combo Bar/Line Graph" title-tooltip="stupendous!" [h]="40">
+<app-card card-title="Grouped Vertical Bar Graph" title-tooltip="stupendous!" [h]="40">
     <div class="h-100">
       <combo-chart-component
+        class="chart-container"
+        [scheme]="comboBarScheme"
+        [colorSchemeLine]="lineChartScheme"
         [results]="barChart"
+        [animations]="animations"
         [lineChart]="lineChartSeries"
+        [tooltipDisabled]="tooltipDisabled"
+        [yAxisTickFormatting]="yLeftTickFormat"
+        [yLeftAxisScaleFactor]="yLeftAxisScale"
+        [yRightAxisScaleFactor]="yRightAxisScale"
+        [yRightAxisTickFormatting]="yRightTickFormat"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
         [legend]="showLegend"
+        [legendTitle]="legendTitle"
         [legendPosition]="legendPosition"
+        [showGridLines]="showGridLines"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [showRightYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel"
+        [yAxisLabelRight]="yAxisLabelRight"
+        [noBarWhenZero]="noBarWhenZero"
         (select)="onSelect($event)"
       >
       </combo-chart-component>
