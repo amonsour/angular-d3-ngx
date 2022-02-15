@@ -11,17 +11,12 @@ import { ChartsService } from '../../charts.service';
     <table class="table table-striped">
     <thead>
     <tr>
-      <th scope="col" sortable="name" (sort)="onSort($event)">Country</th>
-      <th scope="col" sortable="area" (sort)="onSort($event)">Area</th>
+      <th scope="col" sortable="name">Country</th>
+      <th scope="col" sortable="area">Area</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let d of data">
-      <td>
-        <ngb-highlight [result]="d.name"></ngb-highlight>
-      </td>
-      <td><ngb-highlight [result]="d.value | number"></ngb-highlight></td>
-    </tr>
+
     </tbody>
   </table>
     </ng-template>
@@ -30,7 +25,6 @@ import { ChartsService } from '../../charts.service';
   `,
 })
 export class DatatableComponent {
-
   @Input('data') data: string = '';
 
   constructor(private chartsService: ChartsService) {}
@@ -44,5 +38,4 @@ export class DatatableComponent {
       //this.data =  data;
     });
   }
-
 }
