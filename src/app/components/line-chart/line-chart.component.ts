@@ -6,11 +6,11 @@ import localeData  from 'dayjs/plugin/localeData';
 dayjs.extend(localeData)
 
 @Component({
-  selector: 'app-grouped-vertical-bar-chart',
-  templateUrl: './grouped-vertical-bar-chart.component.html',
-  styleUrls: ['./grouped-vertical-bar-chart.component.css']
+  selector: 'app-line-chart',
+  templateUrl: './line-chart.component.html',
+  styleUrls: ['./line-chart.component.css']
 })
-export class GroupedVerticalBarChartComponent implements OnInit {
+export class LineChartComponent implements OnInit {
   // data
   single: any = [];
   multi: any = [];
@@ -23,13 +23,12 @@ export class GroupedVerticalBarChartComponent implements OnInit {
   showYAxis = true;
   gradient = false;
   showLegend = true;
+  timeline = false;
   legendPosition = LegendPosition.Below;
   showXAxisLabel = false;
   xAxisLabel = 'Date';
   showYAxisLabel = true;
   yAxisLabel = 'Number of Visits';
-  roundEdges = false;
-  barPadding = 8;
 
   colorScheme: Color = {
     group: ScaleType.Ordinal,
@@ -52,6 +51,7 @@ export class GroupedVerticalBarChartComponent implements OnInit {
 
   processData(results: any) {
     let entry: any = [];
+    let entry2: any = [];
     let dateArray: any = [];
 
     for (const arr in results) {
@@ -65,21 +65,25 @@ export class GroupedVerticalBarChartComponent implements OnInit {
     dateArray = [];
     dateArray.push(minDate, maxDate, midDate);
 
-    for (const weekday in this.week) {
-      entry = [];
       for (const arr in results) {
-        const day = dayjs( results[arr].date ).format('dddd');
-        if ( this.week[weekday] === day ) {
-          let name: string;
-          entry.length == 0 ? name = ( dayjs(dateArray[0]).format('MMM D') + '-' + dayjs(dateArray[2]).format('MMM D') ) : name = ( dayjs(dateArray[2]).add(1, 'day').format('MMM D') + '-' + dayjs(dateArray[1]).format('MMM D') );
+        const day = new Date(results[arr].date );
+
+        if ( midDate > day ) {
           entry.push({
-            name: name,
+            name: dayjs(day).format('ddd'),
+            value: results[arr].value
+          });
+        } else if ( midDate < day ) {
+          entry2.push({
+            name: dayjs(day).format('ddd'),
             value: results[arr].value
           });
         }
-      }
-      this.multi.push({ name: this.week[weekday], series: entry }) 
   }
+
+  this.multi.push({ name: ( dayjs(dateArray[0]).format('MMM D') + '-' + dayjs(dateArray[2]).format('MMM D') ), series: entry }) 
+  this.multi.push({ name: ( dayjs(dateArray[2]).add(1, 'day').format('MMM D') + '-' + dayjs(dateArray[1]).format('MMM D') ), series: entry2 }) 
+
   console.log(this.multi)
     return this.multi;
   }

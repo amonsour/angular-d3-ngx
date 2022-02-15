@@ -1,9 +1,8 @@
-<app-card card-title="Grouped Vertical Bar Graph" title-tooltip="stupendous!" [h]="40">
+<app-card card-title="Line Chart" title-tooltip="awesome!" [h]="40">
     <div class="h-100">
-      <ngx-charts-bar-vertical-2d
+        <ngx-charts-line-chart
         [scheme]="colorScheme"
         [results]="single"
-        [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
         [legend]="showLegend"
@@ -12,11 +11,11 @@
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel"
-        [roundEdges]="roundEdges"
-        [barPadding]="barPadding"
+        [timeline]="timeline"
         (select)="onSelect($event)"
-      >
-      </ngx-charts-bar-vertical-2d>
+        >
+      </ngx-charts-line-chart>
     </div>
   </app-card>
-  
+
+  <app-datatable [data]="single"></app-datatable>

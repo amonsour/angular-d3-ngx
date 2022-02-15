@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Data, Satisfied, Device } from './queries';
+import { Data, Satisfied, Device, barChart, lineChart } from './queries';
 
 
 @Injectable({ providedIn: 'root' })
@@ -14,6 +14,8 @@ export class ChartsService {
   private deviceUrl = 'api/device';  // URL to web api
   private satisfiedUrl = 'api/satisfied';  // URL to web api
   private groupsUrl = 'api/groups';  // URL to web api
+  private barUrl = 'api/barChart';  // URL to web api
+  private lineUrl = 'api/lineChart';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -37,6 +39,14 @@ export class ChartsService {
 
   getGroups(): Observable<Data[]> {
     return this.http.get<Data[]>(this.groupsUrl)
+  }
+
+  getBar(): Observable<Data[]> {
+    return this.http.get<Data[]>(this.barUrl)
+  }
+
+  getLine(): Observable<Data[]> {
+    return this.http.get<Data[]>(this.lineUrl)
   }
 
   // /** GET hero by id. Return `undefined` when id not found */

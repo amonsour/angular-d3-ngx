@@ -1,8 +1,8 @@
-<app-card card-title="Grouped Vertical Bar Graph" title-tooltip="stupendous!" [h]="40">
+<app-card card-title="Combo Bar/Line Graph" title-tooltip="stupendous!" [h]="40">
     <div class="h-100">
-      <ngx-charts-bar-vertical-2d
-        [scheme]="colorScheme"
-        [results]="single"
+      <combo-chart-component
+        [results]="barChart"
+        [lineChart]="lineChartSeries"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
@@ -10,13 +10,11 @@
         [legendPosition]="legendPosition"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
+        [showRightYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel"
-        [roundEdges]="roundEdges"
-        [barPadding]="barPadding"
         (select)="onSelect($event)"
       >
-      </ngx-charts-bar-vertical-2d>
+      </combo-chart-component>
     </div>
   </app-card>
-  

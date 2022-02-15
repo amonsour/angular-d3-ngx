@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; //<-- copy this.
 
 import { NgbPopoverModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbAccordion }  from '@ng-bootstrap/ng-bootstrap/accordion/accordion';
+
+
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +19,10 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { CardComponent } from './components/card/card.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { GroupedVerticalBarChartComponent } from './components/grouped-vertical-bar-chart/grouped-vertical-bar-chart.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { ComboChartComponent, ComboSeriesVerticalComponent } from './components/combo-chart';
+import { ComboLineBarChartComponent } from './components/combo-line-bar-chart/combo-line-bar-chart.component';
+import { DatatableComponent } from './components/datatable/datatable.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +32,11 @@ import { GroupedVerticalBarChartComponent } from './components/grouped-vertical-
     CardComponent,
     PieChartComponent,
     GroupedVerticalBarChartComponent,
+    LineChartComponent,
+    ComboChartComponent,
+    ComboSeriesVerticalComponent,
+    ComboLineBarChartComponent,
+    DatatableComponent
   ],
   imports: [
     BrowserModule,
