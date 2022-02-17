@@ -1,6 +1,30 @@
-import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy, TemplateRef, PLATFORM_ID, Inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  ChangeDetectionStrategy,
+  TemplateRef,
+  PLATFORM_ID,
+  Inject,
+} from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
-import { formatLabel, PlacementTypes, StyleTypes, BarOrientation, Bar, ViewDimensions, BarChartType, DataItem, ColorHelper, StringOrNumberOrDate, D0Types, ScaleType, escapeLabel  } from '@swimlane/ngx-charts';
+import {
+  formatLabel,
+  PlacementTypes,
+  StyleTypes,
+  BarOrientation,
+  Bar,
+  ViewDimensions,
+  BarChartType,
+  DataItem,
+  ColorHelper,
+  StringOrNumberOrDate,
+  D0Types,
+  ScaleType,
+  escapeLabel,
+} from '@swimlane/ngx-charts';
 import { isPlatformServer } from '@angular/common';
 
 @Component({
@@ -56,12 +80,12 @@ import { isPlatformServer } from '@angular/common';
     trigger('animationState', [
       transition(':leave', [
         style({
-          opacity: 1
+          opacity: 1,
         }),
-        animate(500, style({ opacity: 0 }))
-      ])
-    ])
-  ]
+        animate(500, style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class ComboSeriesVerticalNewComponent implements OnChanges {
   @Input() dims: ViewDimensions;
@@ -91,7 +115,14 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
   tooltipType: StyleTypes;
 
   bars: Bar[];
-  barsForDataLabels: Array<{ x: number; y: number; width: number; height: number; total: number; series: string }> = [];
+  barsForDataLabels: Array<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    total: number;
+    series: string;
+  }> = [];
 
   barOrientation = BarOrientation;
 
@@ -120,13 +151,13 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
 
     const d0 = {
       [D0Types.positive]: 0,
-      [D0Types.negative]: 0
+      [D0Types.negative]: 0,
     };
     let d0Type = D0Types.positive;
 
     let total;
     if (this.type === BarChartType.Normalized) {
-      total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
+      total = this.series.map((d) => d.value).reduce((sum, d) => sum + d, 0);
     }
 
     this.bars = this.series.map((d, index) => {
@@ -145,7 +176,7 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
         formattedLabel,
         height: 0,
         x: 0,
-        y: 0
+        y: 0,
       };
 
       if (this.type === BarChartType.Standard) {
@@ -196,7 +227,10 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
           bar.gradientStops = this.colors.getLinearGradientStops(value);
         } else {
           bar.color = this.colors.getColor(bar.offset1);
-          bar.gradientStops = this.colors.getLinearGradientStops(bar.offset1, bar.offset0);
+          bar.gradientStops = this.colors.getLinearGradientStops(
+            bar.offset1,
+            bar.offset0
+          );
         }
       }
 
@@ -207,13 +241,15 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
         bar.data.series = this.seriesName;
         bar.ariaLabel = this.seriesName + ' ' + bar.ariaLabel;
       }
-      
+
       bar.tooltipText = this.tooltipDisabled
         ? undefined
         : `
         <span class="tooltip-label">${escapeLabel(tooltipLabel)}</span>
         <span class="tooltip-val">${
-          this.dataLabelFormatting ? this.dataLabelFormatting(value) :  value.toLocaleString()
+          this.dataLabelFormatting
+            ? this.dataLabelFormatting(value)
+            : value.toLocaleString()
         }</span>
       `;
 
@@ -224,7 +260,7 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
   }
 
   getSeriesTooltips(seriesLine: any[], index: number) {
-    return seriesLine.map(d => {
+    return seriesLine.map((d) => {
       return d.series[index];
     });
   }
@@ -234,8 +270,12 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
       this.barsForDataLabels = [];
       const section: any = {};
       section.series = this.seriesName;
-      const totalPositive = this.series.map(d => d.value).reduce((sum, d) => (d > 0 ? sum + d : sum), 0);
-      const totalNegative = this.series.map(d => d.value).reduce((sum, d) => (d < 0 ? sum + d : sum), 0);
+      const totalPositive = this.series
+        .map((d) => d.value)
+        .reduce((sum, d) => (d > 0 ? sum + d : sum), 0);
+      const totalNegative = this.series
+        .map((d) => d.value)
+        .reduce((sum, d) => (d < 0 ? sum + d : sum), 0);
       section.total = totalPositive + totalNegative;
       section.x = 0;
       section.y = 0;
@@ -247,7 +287,7 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
       section.width = this.xScale.bandwidth();
       this.barsForDataLabels.push(section);
     } else {
-      this.barsForDataLabels = this.series.map(d => {
+      this.barsForDataLabels = this.series.map((d) => {
         const section: any = {};
         section.series = this.seriesName ?? d.label;
         section.total = d.value;
@@ -261,14 +301,16 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
   }
 
   updateTooltipSettings(): void {
-    this.tooltipPlacement = this.tooltipDisabled ? undefined : PlacementTypes.Top;
+    this.tooltipPlacement = this.tooltipDisabled
+      ? undefined
+      : PlacementTypes.Top;
     this.tooltipType = this.tooltipDisabled ? undefined : StyleTypes.tooltip;
   }
 
   isActive(entry: DataItem): boolean {
     if (!this.activeEntries) return false;
 
-    const item = this.activeEntries.find(active => {
+    const item = this.activeEntries.find((active) => {
       return entry.name === active.name && entry.value === active.value;
     });
 

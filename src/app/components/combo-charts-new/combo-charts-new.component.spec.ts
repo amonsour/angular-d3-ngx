@@ -8,9 +8,8 @@ describe('ComboChartsNewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ComboChartsNewComponent ]
-    })
-    .compileComponents();
+      declarations: [ComboChartsNewComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

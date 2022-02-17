@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 import { ChartsService } from '../../charts.service';
 import dayjs from 'dayjs';
-import localeData  from 'dayjs/plugin/localeData';
-dayjs.extend(localeData)
+import localeData from 'dayjs/plugin/localeData';
+dayjs.extend(localeData);
 
 @Component({
   selector: 'app-combo-line-bar-chart',
   templateUrl: './combo-line-bar-chart.component.html',
-  styleUrls: ['./combo-line-bar-chart.component.css']
+  styleUrls: ['./combo-line-bar-chart.component.css'],
 })
 export class ComboLineBarChartComponent implements OnInit {
   // data
@@ -51,21 +51,21 @@ export class ComboLineBarChartComponent implements OnInit {
   rotateXAxisTicks: boolean = true;
   strokeColor: string = '#FFFFFF';
   strokeWidth: number = 2;
-  
+
   // Combo Chart
-  
+
   lineChartScheme: Color = {
     name: 'cool',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#2E5EA7','#B5C2CC','#f37d35', '#fbbc4d']
+    domain: ['#2E5EA7', '#B5C2CC', '#f37d35', '#fbbc4d'],
   };
 
   comboBarScheme: Color = {
     name: 'daScheme',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#2E5EA7','#B5C2CC']
+    domain: ['#2E5EA7', '#B5C2CC'],
   };
 
   showRightYAxisLabel: boolean = true;
@@ -78,11 +78,11 @@ export class ComboLineBarChartComponent implements OnInit {
   }
 
   getData(): void {
-  this.chartsService.getBar2().subscribe((data: any) => {
-    this.barChart =  data;
-  }); 
+    this.chartsService.getBar2().subscribe((data: any) => {
+      this.barChart = data;
+    });
     this.chartsService.getLine().subscribe((data: any) => {
-      this.lineChart =  data;
+      this.lineChart = data;
     });
     /*
     this.data = {
@@ -92,7 +92,7 @@ export class ComboLineBarChartComponent implements OnInit {
     */
   }
 
-    /*
+  /*
   **
   Combo Chart
   **
@@ -128,4 +128,3 @@ export class ComboLineBarChartComponent implements OnInit {
     console.log(event);
   }
 }
-

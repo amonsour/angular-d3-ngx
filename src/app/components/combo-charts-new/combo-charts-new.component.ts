@@ -9,7 +9,7 @@ import {
   ContentChild,
   TemplateRef,
   TrackByFunction,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { curveLinear } from 'd3-shape';
@@ -27,7 +27,7 @@ import {
   LegendOptions,
   BarOrientation,
   DataItem,
-  getUniqueXDomainValues
+  getUniqueXDomainValues,
 } from '@swimlane/ngx-charts';
 import { isPlatformServer } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -44,12 +44,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
       transition(':leave', [
         style({
           opacity: 1,
-          transform: '*'
+          transform: '*',
         }),
-        animate(500, style({ opacity: 0, transform: 'scale(0)' }))
-      ])
-    ])
-  ]
+        animate(500, style({ opacity: 0, transform: 'scale(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class ComboChartNewComponent extends BaseChartComponent {
   @Input() curve: any = curveLinear;
@@ -103,10 +103,11 @@ export class ComboChartNewComponent extends BaseChartComponent {
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
   @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
-  @ContentChild('seriesTooltipTemplate') seriesTooltipTemplate!: TemplateRef<any>;
+  @ContentChild('seriesTooltipTemplate')
+  seriesTooltipTemplate!: TemplateRef<any>;
 
   @ViewChild(LineSeriesComponent) lineSeriesComponent!: LineSeriesComponent;
-  
+
   dims: ViewDimensions;
   xSet: any;
   xScale: any;
@@ -152,7 +153,12 @@ export class ComboChartNewComponent extends BaseChartComponent {
     if (!this.showDataLabel) {
       this.dataLabelMaxHeight = { negative: 0, positive: 0 };
     }
-    this.margin = [10 + this.dataLabelMaxHeight.positive, 20, 10 + this.dataLabelMaxHeight.negative, 20];
+    this.margin = [
+      10 + this.dataLabelMaxHeight.positive,
+      20,
+      10 + this.dataLabelMaxHeight.negative,
+      20,
+    ];
 
     this.dims = calculateViewDimensions({
       width: this.width,
@@ -166,7 +172,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
       showYLabel: this.showYAxisLabel,
       showLegend: this.legend,
       legendType: this.schemeType,
-      legendPosition: this.legendPosition
+      legendPosition: this.legendPosition,
     });
 
     if (this.showDataLabel) {
@@ -183,23 +189,24 @@ export class ComboChartNewComponent extends BaseChartComponent {
     this.innerScale = this.getInnerScale();
     this.valueScale = this.getValueScale();
 
+    // line chart
+    this.xDomainLine = this.getXDomainLine();
+    if (this.filteredDomain) {
+      this.xDomainLine = this.filteredDomain;
+    }
 
-        // line chart
-        this.xDomainLine = this.getXDomainLine();
-        if (this.filteredDomain) {
-          this.xDomainLine = this.filteredDomain;
-        }
-    
-        this.yDomainLine = this.getYDomainLine();
-        this.seriesDomain = this.getSeriesDomain();
-    
-        this.scaleLines();
+    this.yDomainLine = this.getYDomainLine();
+    this.seriesDomain = this.getSeriesDomain();
 
-        //
-    
-        this.setColors();
-        this.legendOptions = this.getLegendOptions();
-        this.transform = `translate(${this.dims.xOffset} , ${this.margin[0] + this.dataLabelMaxHeight.negative})`;
+    this.scaleLines();
+
+    //
+
+    this.setColors();
+    this.legendOptions = this.getLegendOptions();
+    this.transform = `translate(${this.dims.xOffset} , ${
+      this.margin[0] + this.dataLabelMaxHeight.negative
+    })`;
   }
 
   deactivateAll() {
@@ -209,7 +216,6 @@ export class ComboChartNewComponent extends BaseChartComponent {
     }
     this.activeEntries = [];
   }
-
 
   @HostListener('mouseleave')
   hideCircles(): void {
@@ -225,7 +231,10 @@ export class ComboChartNewComponent extends BaseChartComponent {
   updateDomain(domain: any): void {
     this.filteredDomain = domain;
     this.xDomainLine = this.filteredDomain;
-    this.xScaleLine = this.getXScaleLine(this.xDomainLine, this.groupScale.bandwidth());
+    this.xScaleLine = this.getXScaleLine(
+      this.xDomainLine,
+      this.groupScale.bandwidth()
+    );
   }
 
   scaleLines() {
@@ -237,16 +246,18 @@ export class ComboChartNewComponent extends BaseChartComponent {
     let domain;
     this.combinedSeries = [];
 
-    for ( domain of this.innerDomain ) 
-      this.combinedSeries.push({ name: domain, series: this.getValueDomainSelection(domain) })
-    
+    for (domain of this.innerDomain)
+      this.combinedSeries.push({
+        name: domain,
+        series: this.getValueDomainSelection(domain),
+      });
 
-    for ( domain of this.lineChart)
-    this.combinedSeries.push({ name: domain.name, series: domain.series });
+    for (domain of this.lineChart)
+      this.combinedSeries.push({ name: domain.name, series: domain.series });
 
-    console.log(this.combinedSeries)
+    console.log(this.combinedSeries);
 
-    return this.combinedSeries.map(d => d.name);
+    return this.combinedSeries.map((d) => d.name);
   }
 
   isDate(value: any): boolean {
@@ -297,12 +308,15 @@ export class ComboChartNewComponent extends BaseChartComponent {
     let domain = [];
 
     if (this.scaleType === ScaleType.Linear) {
-      values = values.map(v => Number(v));
+      values = values.map((v) => Number(v));
     }
 
     let min;
     let max;
-    if (this.scaleType === ScaleType.Time || this.scaleType === ScaleType.Linear) {
+    if (
+      this.scaleType === ScaleType.Time ||
+      this.scaleType === ScaleType.Linear
+    ) {
       min = this.xScaleMin ? this.xScaleMin : Math.min(...values);
 
       max = this.xScaleMax ? this.xScaleMax : Math.max(...values);
@@ -361,23 +375,23 @@ export class ComboChartNewComponent extends BaseChartComponent {
     let max = Math.max(...values);
 
     const num_digits1 = Math.floor(Math.log10(max)) + 1;
-    max = Math.ceil(max/Math.pow(10,num_digits1-1))*Math.pow(10,num_digits1-1)
+    max =
+      Math.ceil(max / Math.pow(10, num_digits1 - 1)) *
+      Math.pow(10, num_digits1 - 1);
 
-    console.log(max)
+    console.log(max);
 
     //const max = this.yScaleMax ? this.yScaleMax : Math.max(...values);
 
     return [min, max];
   }
 
-  
-
   getValueDomainSelection(label: string): string[] {
     const domain = [];
     for (const group of this.results) {
       for (const d of group.series) {
         if (d.label === label) {
-          domain.push({name: group.label, value: d.value});
+          domain.push({ name: group.label, value: d.value });
         }
       }
     }
@@ -397,7 +411,10 @@ export class ComboChartNewComponent extends BaseChartComponent {
         scale = scale.nice();
       }
     } else if (this.scaleType === ScaleType.Ordinal) {
-      scale = scalePoint().range([ 0 , width ]).padding(0.5).domain(this.groupDomain);
+      scale = scalePoint()
+        .range([0, width])
+        .padding(0.5)
+        .domain(this.groupDomain);
     }
 
     return scale;
@@ -410,7 +427,8 @@ export class ComboChartNewComponent extends BaseChartComponent {
   }
 
   getGroupScale(): any {
-    const spacing = this.groupDomain.length / (this.dims.height / this.groupPadding + 1);
+    const spacing =
+      this.groupDomain.length / (this.dims.height / this.groupPadding + 1);
 
     return scaleBand()
       .rangeRound([0, this.dims.width])
@@ -422,11 +440,16 @@ export class ComboChartNewComponent extends BaseChartComponent {
   getInnerScale(): any {
     const width = this.groupScale.bandwidth();
     const spacing = this.innerDomain.length / (width / this.barPadding + 1);
-    return scaleBand().rangeRound([0, width]).paddingInner(spacing).domain(this.innerDomain);
+    return scaleBand()
+      .rangeRound([0, width])
+      .paddingInner(spacing)
+      .domain(this.innerDomain);
   }
 
   getValueScale(): any {
-    const scale = scaleLinear().range([this.dims.height, 0]).domain(this.valueDomain);
+    const scale = scaleLinear()
+      .range([this.dims.height, 0])
+      .domain(this.valueDomain);
     return this.roundDomains ? scale.nice() : scale;
   }
 
@@ -467,8 +490,9 @@ export class ComboChartNewComponent extends BaseChartComponent {
     let max = Math.max(...domain);
 
     const num_digits1 = Math.floor(Math.log10(max)) + 1;
-    max = Math.ceil(max/Math.pow(10,num_digits1-1))*Math.pow(10,num_digits1-1)
-
+    max =
+      Math.ceil(max / Math.pow(10, num_digits1 - 1)) *
+      Math.pow(10, num_digits1 - 1);
 
     const min = Math.min(0, ...domain);
     //const max = this.yScaleMax ? Math.max(this.yScaleMax, ...domain) : Math.max(0, ...domain);
@@ -500,8 +524,18 @@ export class ComboChartNewComponent extends BaseChartComponent {
       domain = this.valueDomain;
     }
 
-    this.colors = new ColorHelper(this.scheme, this.schemeType, domain, this.customColors);
-    this.colorsLine = new ColorHelper(this.colorSchemeLine, this.schemeType, domain, this.customColors);
+    this.colors = new ColorHelper(
+      this.scheme,
+      this.schemeType,
+      domain,
+      this.customColors
+    );
+    this.colorsLine = new ColorHelper(
+      this.colorSchemeLine,
+      this.schemeType,
+      domain,
+      this.customColors
+    );
   }
 
   getLegendOptions(): LegendOptions {
@@ -510,7 +544,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
       colors: undefined,
       domain: [],
       title: undefined,
-      position: this.legendPosition
+      position: this.legendPosition,
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.seriesDomain;
@@ -521,7 +555,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
       opts.colors = this.colors.scale;
     }
 
-    console.log(opts)
+    console.log(opts);
 
     return opts;
   }
@@ -558,16 +592,15 @@ export class ComboChartNewComponent extends BaseChartComponent {
   // }
 
   onActivate(event, group: DataItem, fromLegend: boolean = false) {
-
     const item = Object.assign({}, event);
     if (group) {
       item.series = group.name;
     }
 
-        const items = this.results
-      .map(g => g.series)
+    const items = this.results
+      .map((g) => g.series)
       .flat()
-      .filter(i => {
+      .filter((i) => {
         if (fromLegend) {
           return i.label === item.name;
         } else {
@@ -575,8 +608,12 @@ export class ComboChartNewComponent extends BaseChartComponent {
         }
       });
 
-    const idx = this.activeEntries.findIndex(d => {
-      return d.name === event.name && d.value === event.value && d.series === event.series;
+    const idx = this.activeEntries.findIndex((d) => {
+      return (
+        d.name === event.name &&
+        d.value === event.value &&
+        d.series === event.series
+      );
     });
     if (idx > -1) {
       return;
@@ -592,7 +629,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
       item.series = group.name;
     }
 
-    this.activeEntries = this.activeEntries.filter(i => {
+    this.activeEntries = this.activeEntries.filter((i) => {
       if (fromLegend) {
         return i.label !== item.name;
       } else {
@@ -610,9 +647,15 @@ export class ComboChartNewComponent extends BaseChartComponent {
 
   onDataLabelMaxHeightChanged(event, groupIndex: number): void {
     if (event.size.negative) {
-      this.dataLabelMaxHeight.negative = Math.max(this.dataLabelMaxHeight.negative, event.size.height);
+      this.dataLabelMaxHeight.negative = Math.max(
+        this.dataLabelMaxHeight.negative,
+        event.size.height
+      );
     } else {
-      this.dataLabelMaxHeight.positive = Math.max(this.dataLabelMaxHeight.positive, event.size.height);
+      this.dataLabelMaxHeight.positive = Math.max(
+        this.dataLabelMaxHeight.positive,
+        event.size.height
+      );
     }
     if (groupIndex === this.results.length - 1) {
       setTimeout(() => this.update());
