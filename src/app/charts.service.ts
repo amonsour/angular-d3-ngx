@@ -15,6 +15,7 @@ export class ChartsService {
   private satisfiedUrl = 'api/satisfied';  // URL to web api
   private groupsUrl = 'api/groups';  // URL to web api
   private barUrl = 'api/barChart';  // URL to web api
+  private bar2Url = 'api/barChart2';  // URL to web api
   private lineUrl = 'api/lineChart';  // URL to web api
 
   httpOptions = {
@@ -43,6 +44,10 @@ export class ChartsService {
 
   getBar(): Observable<Data[]> {
     return this.http.get<Data[]>(this.barUrl)
+  }
+
+  getBar2(): Observable<Data[]> {
+    return this.http.get<Data[]>(this.bar2Url)
   }
 
   getLine(): Observable<Data[]> {

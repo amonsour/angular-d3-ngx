@@ -80,7 +80,7 @@ export class GroupedVerticalBarChartComponent implements OnInit {
       }
       this.multi.push({ name: this.week[weekday], series: entry }) 
   }
-  console.log(this.multi)
+  console.log(JSON.stringify(this.multi))
     return this.multi;
   }
 

@@ -1,12 +1,11 @@
-<app-card card-title="Grouped Vertical Bar Graph" title-tooltip="stupendous!" [h]="40">
+<app-card card-title="Combo Grouped Bar and Line Graph" title-tooltip="amazing!" [h]="40">
     <div class="h-100">
-      <combo-chart-component
-        class="chart-container"
+      <combo-chart-new-component
         [scheme]="comboBarScheme"
         [colorSchemeLine]="lineChartScheme"
         [results]="barChart"
         [animations]="animations"
-        [lineChart]="lineChartSeries"
+        [lineChart]="lineChart"
         [tooltipDisabled]="tooltipDisabled"
         [yAxisTickFormatting]="yLeftTickFormat"
         [yLeftAxisScaleFactor]="yLeftAxisScale"
@@ -28,6 +27,6 @@
         [noBarWhenZero]="noBarWhenZero"
         (select)="onSelect($event)"
       >
-      </combo-chart-component>
+      </combo-chart-new-component>
     </div>
   </app-card>

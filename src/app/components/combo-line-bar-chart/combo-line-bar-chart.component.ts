@@ -13,7 +13,8 @@ dayjs.extend(localeData)
 export class ComboLineBarChartComponent implements OnInit {
   // data
   barChart: any = [];
-  lineChartSeries: any = [];
+  lineChart: any = [];
+  data: any = [];
 
   week: string[] = dayjs.weekdays();
 
@@ -28,15 +29,14 @@ export class ComboLineBarChartComponent implements OnInit {
   showLegend = true;
   legendTitle = 'Legend';
   legendPosition = LegendPosition.Below;
-  showXAxisLabel = true;
+  showXAxisLabel = false;
   tooltipDisabled = false;
   showText = true;
   xAxisLabel = 'Country';
   showYAxisLabel = true;
-  yAxisLabel = 'GDP Per Capita';
+  yAxisLabel = 'Visits';
   showGridLines = true;
-  innerPadding = '10%';
-  barPadding = 8;
+  barPadding = 25;
   groupPadding = 16;
   roundDomains = false;
   maxRadius = 10;
@@ -47,51 +47,49 @@ export class ComboLineBarChartComponent implements OnInit {
   xScaleMin: any;
   xScaleMax: any;
   showDataLabel: boolean = false;
-  noBarWhenZero: boolean = true;
-  trimXAxisTicks: boolean = true;
-  trimYAxisTicks: boolean = true;
+  noBarWhenZero: boolean = false;
   rotateXAxisTicks: boolean = true;
-  maxXAxisTickLength: number = 16;
-  maxYAxisTickLength: number = 16;
   strokeColor: string = '#FFFFFF';
   strokeWidth: number = 2;
   
   // Combo Chart
   
   lineChartScheme: Color = {
-    name: 'coolthree',
+    name: 'cool',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#01579b', '#7aa3e5', '#a8385d', '#00bfa5']
+    domain: ['#2E5EA7','#B5C2CC','#f37d35', '#fbbc4d']
   };
 
   comboBarScheme: Color = {
-    name: 'singleLightBlue',
+    name: 'daScheme',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#01579b']
+    domain: ['#2E5EA7','#B5C2CC']
   };
 
   showRightYAxisLabel: boolean = true;
-  yAxisLabelRight: string = 'Utilization';
+  yAxisLabelRight: string = 'Call volume';
 
   constructor(private chartsService: ChartsService) {}
 
   ngOnInit(): void {
-    this.getDataBar();
-    this.getDataLine();
+    this.getData();
   }
 
-  getDataBar(): void {
-  this.chartsService.getBar().subscribe((data: any) => {
+  getData(): void {
+  this.chartsService.getBar2().subscribe((data: any) => {
     this.barChart =  data;
   }); 
-}
-
-  getDataLine(): void {
     this.chartsService.getLine().subscribe((data: any) => {
-      this.lineChartSeries =  data;
+      this.lineChart =  data;
     });
+    /*
+    this.data = {
+      barChart: this.barChart,
+      lineChart: this.lineChart,
+    }
+    */
   }
 
     /*
@@ -118,7 +116,7 @@ export class ComboLineBarChartComponent implements OnInit {
   }
 
   yRightTickFormat(data: any) {
-    return `${data}%`;
+    return `${data}`;
   }
   /*
   **

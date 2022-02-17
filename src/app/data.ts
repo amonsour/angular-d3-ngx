@@ -38,104 +38,105 @@ export const DEVICE: Device[] = [
 
 export const LINECHART: lineChart[] = [
   {
-    name: 'Tablets',
+    name: 'Calls Apr 18-Apr 24',
     series: [
       {
-        name: 'USA',
-        value: 50
+        name: 'Sunday',
+        value: 0
       },
       {
-        value: 80,
-        name: 'United Kingdom'
-      },
-      {
-        value: 85,
-        name: 'France'
+        name: 'Monday',
+        value: 80
       },
       {
         value: 90,
-        name: 'Japan'
+        name: 'Tuesday'
       },
       {
-        value: 100,
-        name: 'China'
-      }
-    ]
-  },
-  {
-    name: 'Cell Phones',
-    series: [
-      {
-        value: 10,
-        name: 'USA'
-      },
-      {
-        value: 20,
-        name: 'United Kingdom'
-      },
-      {
-        value: 30,
-        name: 'France'
+        name: 'Wednesday',
+        value: 75
       },
       {
         value: 40,
-        name: 'Japan'
+        name: 'Thursday'
       },
       {
-        value: 10,
-        name: 'China'
-      }
+        name: 'Friday',
+        value: 82
+      },
+      {
+        value: 5,
+        name: 'Saturday'
+      },
     ]
   },
   {
-    name: 'Computers',
+    name: 'Calls Apr 11-Apr 17',
     series: [
       {
-        value: 2,
-        name: 'USA'
+        name: 'Sunday',
+        value: 0
       },
       {
-        value: 4,
-        name: 'United Kingdom'
+        name: 'Monday',
+        value: 42
       },
       {
-        value: 20,
-        name: 'France'
+        value: 56,
+        name: 'Tuesday'
       },
       {
-        value: 30,
-        name: 'Japan'
+        name: 'Wednesday',
+        value: 65
       },
       {
-        value: 35,
-        name: 'China'
-      }
+        value: 40,
+        name: 'Thursday'
+      },
+      {
+        name: 'Friday',
+        value: 57
+      },
+      {
+        value: 12,
+        name: 'Saturday'
+      },
     ]
-  }
+  },
 ];
 
 export const BARCHART: barChart[] = [
   {
-    name: 'USA',
-    value: 51236
-  },
-  {
-    name: 'United Kingdom',
-    value: 30000
-  },
-  {
-    name: 'France',
-    value: 10000
-  },
-  {
-    name: 'Japan',
+    name: 'Sunday',
     value: 0
   },
   {
-    name: 'China',
-    value: 500
-  }
+    name: 'Monday',
+    value: 2345
+  },
+  {
+    name: 'Tuesday',
+    value: 30000
+  },
+  {
+    name: 'Wednesday',
+    value: 51236
+  },
+  {
+    name: 'Thursday',
+    value: 30000
+  },
+  {
+    name: 'Friday',
+    value: 51236
+  },
+  {
+    name: 'Saturday',
+    value: 30000
+  },
 ];
+
+export const BARCHART2: lineChart[] = [{"name":"Sunday","series":[{"name":"Aug 8-Aug 14","value":212},{"name":"Aug 15-Aug 21","value":231}]},{"name":"Monday","series":[{"name":"Aug 8-Aug 14","value":168},{"name":"Aug 15-Aug 21","value":150}]},{"name":"Tuesday","series":[{"name":"Aug 8-Aug 14","value":249},{"name":"Aug 15-Aug 21","value":97}]},{"name":"Wednesday","series":[{"name":"Aug 8-Aug 14","value":195},{"name":"Aug 15-Aug 21","value":170}]},{"name":"Thursday","series":[{"name":"Aug 8-Aug 14","value":198},{"name":"Aug 15-Aug 21","value":239}]},{"name":"Friday","series":[{"name":"Aug 8-Aug 14","value":94},{"name":"Aug 15-Aug 21","value":227}]},{"name":"Saturday","series":[{"name":"Aug 8-Aug 14","value":190},{"name":"Aug 15-Aug 21","value":173}]}];
 
 export const GROUPS: Data[] = [
   { id: 1, date: '08/08/2021', value: 212 },

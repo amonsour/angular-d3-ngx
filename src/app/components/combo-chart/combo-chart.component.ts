@@ -97,7 +97,7 @@ export class ComboChartComponent extends BaseChartComponent {
   legendSpacing = 0;
   bandwidth: any;
   barPadding = 8;
-
+  
   trackBy(_index: any, item: any): string {
     return `${item.name}`;
   }
@@ -128,6 +128,8 @@ export class ComboChartComponent extends BaseChartComponent {
     }
     this.xScale = this.getXScale();
     this.yScale = this.getYScale();
+
+    console.log(this.results)
 
     // line chart
     this.xDomainLine = this.getXDomainLine();
@@ -285,8 +287,12 @@ export class ComboChartComponent extends BaseChartComponent {
     let scale;
     if (this.bandwidth === undefined) {
       this.bandwidth = width - this.barPadding;
+      console.log('bandwidth: ' + this.bandwidth)
     }
     const offset = Math.floor((width + this.barPadding - (this.bandwidth + this.barPadding) * domain.length) / 2);
+
+    console.log(' width: ' + width + ' barPadding: ' + this.barPadding + ' offset: ' + offset + ' bandwidth: ' + this.bandwidth + ' domain: ' + domain)
+    console.log('1st: ' + ( offset + this.bandwidth / 2 ) + ' 2nd: ' + (width - offset - this.bandwidth / 2) )
 
     if (this.scaleType === 'time') {
       scale = scaleTime().range([0, width]).domain(domain);
@@ -370,6 +376,8 @@ export class ComboChartComponent extends BaseChartComponent {
       opts.domain = this.seriesDomain;
       opts.colors = this.colors.scale;
     }
+
+    console.log(opts)
     return opts;
   }
 

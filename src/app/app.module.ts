@@ -22,7 +22,9 @@ import { GroupedVerticalBarChartComponent } from './components/grouped-vertical-
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { ComboChartComponent, ComboSeriesVerticalComponent } from './components/combo-chart';
 import { ComboLineBarChartComponent } from './components/combo-line-bar-chart/combo-line-bar-chart.component';
+//import { ComboChartNewComponent, ComboSeriesVerticalNewComponent } from './components/combo-chart-new';
 import { DatatableComponent } from './components/datatable/datatable.component';
+import { ComboChartNewComponent, ComboSeriesVerticalNewComponent } from './components/combo-charts-new';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { DatatableComponent } from './components/datatable/datatable.component';
     ComboChartComponent,
     ComboSeriesVerticalComponent,
     ComboLineBarChartComponent,
-    DatatableComponent
+    DatatableComponent,
+    ComboChartNewComponent,
+    ComboSeriesVerticalNewComponent
   ],
   imports: [
     BrowserModule,

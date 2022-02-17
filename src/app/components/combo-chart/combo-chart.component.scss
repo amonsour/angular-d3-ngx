@@ -1,3 +1,23 @@
+// g.line-chart > g:last-of-type > g:nth-child(2) g.line-series > path {
+//   stroke-dasharray: 6 10 !important;
+// }
+
+// .ngx-charts-outer {
+//   animation: chartFadeIn linear 600ms;
+
+//   @keyframes chartFadeIn {
+//     0% {
+//       opacity: 0;
+//     }
+//     20% {
+//       opacity: 0;
+//     }
+//     100% {
+//       opacity: 1;
+//     }
+//   }
+// }
+
 .ngx-charts {
   float: left;
   overflow: visible;
@@ -39,6 +59,9 @@
       transition: opacity 100ms ease-in-out;
       opacity: 0.2;
     }
+    // path {
+    //   stroke-dasharray: 6 10 !important;
+    // }
   }
 
   .line-highlight {
