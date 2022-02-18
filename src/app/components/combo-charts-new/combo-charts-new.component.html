@@ -62,7 +62,7 @@
 
     <svg:g
       ngx-combo-charts-series-vertical-new
-      *ngFor="let group of results; let index = index; ngForTrackBy: trackBy"
+      *ngFor="let group of results; let index = index"
       [@animationState]="'active'"
       [attr.transform]="groupTransform(group)"
       [activeEntries]="activeEntries"
@@ -94,7 +94,7 @@
   <svg:g [attr.transform]="transform" class="line-chart chart">
     <svg:g>
       <svg:g
-        *ngFor="let series of lineChart; ngForTrackBy: trackBy"
+        *ngFor="let series of lineChart"
         ngx-charts-line-series
         [xScale]="xScaleLine"
         [yScale]="yScaleLine"
