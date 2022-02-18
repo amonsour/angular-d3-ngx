@@ -375,9 +375,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
     let max = Math.max(...values);
 
     const num_digits1 = Math.floor(Math.log10(max)) + 1;
-    max =
-      Math.ceil(max / Math.pow(10, num_digits1 - 1)) *
-      Math.pow(10, num_digits1 - 1);
+    Math.ceil(max/Math.pow(10,num_digits1-1))*Math.pow(10,num_digits1-1)
 
     console.log(max);
 

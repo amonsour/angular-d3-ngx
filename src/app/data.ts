@@ -46,26 +46,26 @@ export const LINECHART: lineChart[] = [
       },
       {
         name: 'Monday',
-        value: 80,
+        value: 79917,
       },
       {
-        value: 90,
+        value: 81278,
         name: 'Tuesday',
       },
       {
         name: 'Wednesday',
-        value: 75,
+        value: 76967,
       },
       {
-        value: 40,
+        value: 72542,
         name: 'Thursday',
       },
       {
         name: 'Friday',
-        value: 82,
+        value: 65486,
       },
       {
-        value: 5,
+        value: 2953,
         name: 'Saturday',
       },
     ],
@@ -79,26 +79,26 @@ export const LINECHART: lineChart[] = [
       },
       {
         name: 'Monday',
-        value: 42,
+        value: 89599,
       },
       {
-        value: 56,
+        value: 82338,
         name: 'Tuesday',
       },
       {
         name: 'Wednesday',
-        value: 65,
+        value: 83349,
       },
       {
-        value: 40,
+        value: 75687,
         name: 'Thursday',
       },
       {
         name: 'Friday',
-        value: 57,
+        value: 69901,
       },
       {
-        value: 12,
+        value: 0,
         name: 'Saturday',
       },
     ],
@@ -140,50 +140,50 @@ export const BARCHART2: lineChart[] = [
   {
     name: 'Sunday',
     series: [
-      { name: 'Aug 8-Aug 14', value: 212 },
-      { name: 'Aug 15-Aug 21', value: 231 },
+      { name: 'Aug 8-Aug 14', value: 453777 },
+      { name: 'Aug 15-Aug 21', value: 436140 },
     ],
   },
   {
     name: 'Monday',
     series: [
-      { name: 'Aug 8-Aug 14', value: 168 },
-      { name: 'Aug 15-Aug 21', value: 150 },
+      { name: 'Aug 8-Aug 14', value: 1141379 },
+      { name: 'Aug 15-Aug 21', value: 1181317 },
     ],
   },
   {
     name: 'Tuesday',
     series: [
-      { name: 'Aug 8-Aug 14', value: 249 },
-      { name: 'Aug 15-Aug 21', value: 97 },
+      { name: 'Aug 8-Aug 14', value: 911667 },
+      { name: 'Aug 15-Aug 21', value: 967833 },
     ],
   },
   {
     name: 'Wednesday',
     series: [
-      { name: 'Aug 8-Aug 14', value: 195 },
-      { name: 'Aug 15-Aug 21', value: 170 },
+      { name: 'Aug 8-Aug 14', value: 856571 },
+      { name: 'Aug 15-Aug 21', value: 920866 },
     ],
   },
   {
     name: 'Thursday',
     series: [
-      { name: 'Aug 8-Aug 14', value: 198 },
-      { name: 'Aug 15-Aug 21', value: 239 },
+      { name: 'Aug 8-Aug 14', value: 842921 },
+      { name: 'Aug 15-Aug 21', value: 901947 },
     ],
   },
   {
     name: 'Friday',
     series: [
-      { name: 'Aug 8-Aug 14', value: 94 },
-      { name: 'Aug 15-Aug 21', value: 227 },
+      { name: 'Aug 8-Aug 14', value: 800866 },
+      { name: 'Aug 15-Aug 21', value: 774515 },
     ],
   },
   {
     name: 'Saturday',
     series: [
-      { name: 'Aug 8-Aug 14', value: 190 },
-      { name: 'Aug 15-Aug 21', value: 173 },
+      { name: 'Aug 8-Aug 14', value: 413806 },
+      { name: 'Aug 15-Aug 21', value: 433290 },
     ],
   },
 ];
