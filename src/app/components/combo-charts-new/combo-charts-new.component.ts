@@ -137,9 +137,10 @@ export class ComboChartNewComponent extends BaseChartComponent {
   seriesDomain: any;
   hoveredVertical: null;
   isSSR = false;
-
+  seriesColors: ColorHelper;
   barOrientation = BarOrientation;
   bandwidth: number;
+  legendSpacing: number = 0;
 
   ngOnInit() {
     if (isPlatformServer(this.platformId)) {
@@ -177,6 +178,14 @@ export class ComboChartNewComponent extends BaseChartComponent {
 
     if (this.showDataLabel) {
       this.dims.height -= this.dataLabelMaxHeight.negative;
+    }
+
+    if (!this.yAxis) {
+      this.legendSpacing = 0;
+    } else if (this.showYAxisLabel && this.yAxis) {
+      this.legendSpacing = 100;
+    } else {
+      this.legendSpacing = 40;
     }
 
     this.formatDates();
@@ -508,13 +517,13 @@ export class ComboChartNewComponent extends BaseChartComponent {
     return `translate(${this.groupScale(group.label)}, 0)`;
   }
 
-  // trackBy: TrackByFunction<DataItem> = (index: number, item: DataItem) => {
-  //   return item.name;
-  // };
+  trackBy: TrackByFunction<any> = (index: number, item: DataItem) => {
+    return item.name;
+  };
 
-  trackBy(_index: any, item: any): string {
-    return `${item.name}`;
-  }
+  // trackBy(_index: any, item: any): string {
+  //   return `${item.name}`;
+  // }
 
   setColors(): void {
     let domain;
@@ -536,6 +545,8 @@ export class ComboChartNewComponent extends BaseChartComponent {
       domain,
       this.customColors
     );
+
+    //this.seriesColors = (this.colors, this.colorsLine);
   }
 
   getLegendOptions(): LegendOptions {

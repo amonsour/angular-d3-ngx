@@ -18,9 +18,11 @@ export class ComboLineBarChartComponent implements OnInit {
 
   week: string[] = dayjs.weekdays();
 
+
+  view: [number, number];
   width: number = 1020;
   height: number = 400;
-  fitContainer: boolean = false;
+  fitContainer: boolean = true;
 
   // options
   showXAxis = true;
@@ -47,8 +49,6 @@ export class ComboLineBarChartComponent implements OnInit {
   showDataLabel: boolean = false;
   noBarWhenZero: boolean = false;
   rotateXAxisTicks: boolean = true;
-  strokeColor: string = '#FFFFFF';
-  strokeWidth: number = 2;
   
   // Combo Chart
   
@@ -71,8 +71,16 @@ export class ComboLineBarChartComponent implements OnInit {
 
   constructor(private chartsService: ChartsService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getData();
+
+    if (!this.fitContainer) {
+      this.applyDimensions();
+    }
+  }
+
+  applyDimensions() {
+    this.view = [this.width-50, this.height];
   }
 
   getData(): void {
@@ -82,6 +90,7 @@ export class ComboLineBarChartComponent implements OnInit {
     this.chartsService.getLine().subscribe((data: any) => {
       this.lineChart =  data;
     });
+    
     /*
     this.data = {
       barChart: this.barChart,
