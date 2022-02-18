@@ -105,7 +105,8 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
   @Input() showDataLabel: boolean = false;
   @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
-
+  @Input() groupPadding: number = 16;
+  @Input() barPadding: number = 8;
   @Output() select: EventEmitter<DataItem> = new EventEmitter();
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();

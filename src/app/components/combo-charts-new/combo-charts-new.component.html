@@ -62,7 +62,7 @@
 
     <svg:g
       ngx-combo-charts-series-vertical-new
-      *ngFor="let group of results; let index = index; trackBy: trackBy"
+      *ngFor="let group of results; let index = index"
       [@animationState]="'active'"
       [attr.transform]="groupTransform(group)"
       [activeEntries]="activeEntries"
@@ -93,21 +93,20 @@
   </svg:g>
   <svg:g [attr.transform]="transform" class="line-chart chart">
     <svg:g>
-      <svg:g *ngFor="let series of lineChart; trackBy: trackBy">
-        <svg:g
+      <svg:g
+        *ngFor="let series of lineChart"
         ngx-charts-line-series
-          [xScale]="xScaleLine"
-          [yScale]="yScaleLine"
-          [colors]="colorsLine"
-          [data]="series"
-          [activeEntries]="activeEntries"
-          [scaleType]="scaleType"
-          [curve]="curve"
-          [rangeFillOpacity]="rangeFillOpacity"
-          [hasRange]="hasRange"
-          [animations]="animations"
-        />
-      </svg:g>
+        [xScale]="xScaleLine"
+        [yScale]="yScaleLine"
+        [colors]="colorsLine"
+        [data]="series"
+        [activeEntries]="activeEntries"
+        [scaleType]="scaleType"
+        [curve]="curve"
+        [rangeFillOpacity]="rangeFillOpacity"
+        [hasRange]="hasRange"
+        [animations]="animations"
+      />
     </svg:g>
 
     <svg:g *ngIf="!tooltipDisabled" (mouseleave)="hideCircles()">
@@ -123,7 +122,7 @@
         [tooltipTemplate]="seriesTooltipTemplate"
         (hover)="updateHoveredVertical($event)"
       />
-      
+
       <svg:g *ngFor="let series of lineChart">
         <svg:g
           ngx-charts-circle-series
