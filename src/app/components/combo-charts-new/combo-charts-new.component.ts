@@ -84,7 +84,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
   @Input() showRightYAxisLabel: any;
   @Input() yAxisLabelRight: any;
   @Input() colorSchemeLine: Color;
-  @Input() groupPadding: number = 50;
+  @Input() groupPadding: number = 16;
   @Input() barPadding: number = 8;
   @Input() roundDomains: boolean = false;
   @Input() roundEdges: boolean = true;

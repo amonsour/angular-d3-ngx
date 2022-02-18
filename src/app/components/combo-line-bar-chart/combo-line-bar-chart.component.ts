@@ -18,8 +18,8 @@ export class ComboLineBarChartComponent implements OnInit {
 
   week: string[] = dayjs.weekdays();
 
-  width: number = 700;
-  height: number = 300;
+  width: number = 1020;
+  height: number = 400;
   fitContainer: boolean = false;
 
   // options
@@ -32,15 +32,13 @@ export class ComboLineBarChartComponent implements OnInit {
   showXAxisLabel = false;
   tooltipDisabled = false;
   showText = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Days of Week';
   showYAxisLabel = true;
   yAxisLabel = 'Visits';
   showGridLines = true;
-  barPadding = 25;
-  groupPadding = 16;
+  barPadding = 6;
+  groupPadding = 20;
   roundDomains = false;
-  maxRadius = 10;
-  minRadius = 3;
   showSeriesOnHover = true;
   roundEdges: boolean = true;
   animations: boolean = true;
@@ -116,7 +114,7 @@ export class ComboLineBarChartComponent implements OnInit {
   }
 
   yRightTickFormat(data: any) {
-    return `${data}`;
+    return `${data.toLocaleString()}`;
   }
   /*
   **

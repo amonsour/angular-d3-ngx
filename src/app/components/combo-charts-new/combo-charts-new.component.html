@@ -39,9 +39,9 @@
       [dims]="dims"
       [yOrient]="yOrientLeft"
       [showLabel]="showYAxisLabel"
+      [showGridLines]="showGridLines"
       [trimTicks]="trimYAxisTicks"
       [maxTickLength]="maxYAxisTickLength"
-      [tickFormatting]="yAxisTickFormatting"
       [labelText]="yAxisLabel"
       [tickFormatting]="yAxisTickFormatting"
       (dimensionsChanged)="updateYAxisWidth($event)"
@@ -53,7 +53,7 @@
       [yScale]="yScaleLine"
       [dims]="dims"
       [yOrient]="yOrientRight"
-      [showGridLines]="showGridLines"
+      [trimTicks]="trimYAxisTicks"
       [showLabel]="showRightYAxisLabel"
       [labelText]="yAxisLabelRight"
       [tickFormatting]="yRightAxisTickFormatting"
@@ -81,6 +81,8 @@
       [roundEdges]="roundEdges"
       [animations]="animations"
       [noBarWhenZero]="noBarWhenZero"
+      [barPadding]="barPadding"
+      [groupPadding]="groupPadding"
       (select)="onClick($event, group)"
       (activate)="onActivate($event, group)"
       (deactivate)="onDeactivate($event, group)"
@@ -121,7 +123,7 @@
         [tooltipTemplate]="seriesTooltipTemplate"
         (hover)="updateHoveredVertical($event)"
       />
-
+      
       <svg:g *ngFor="let series of lineChart">
         <svg:g
           ngx-charts-circle-series
