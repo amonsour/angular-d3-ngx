@@ -255,8 +255,6 @@ export class ComboChartNewComponent extends BaseChartComponent {
     for (domain of this.lineChart)
       this.combinedSeries.push({ name: domain.name, series: domain.series });
 
-    console.log(this.combinedSeries);
-
     return this.combinedSeries.map((d) => d.name);
   }
 
@@ -375,9 +373,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
     let max = Math.max(...values);
 
     const num_digits1 = Math.floor(Math.log10(max)) + 1;
-    Math.ceil(max/Math.pow(10,num_digits1-1))*Math.pow(10,num_digits1-1)
-
-    console.log(max);
+    max = Math.ceil(max/Math.pow(10,num_digits1-1))*Math.pow(10,num_digits1-1);
 
     //const max = this.yScaleMax ? this.yScaleMax : Math.max(...values);
 
@@ -410,7 +406,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
       }
     } else if (this.scaleType === ScaleType.Ordinal) {
       scale = scalePoint()
-        .range([0, width])
+        .rangeRound([0, width])
         .padding(0.5)
         .domain(this.groupDomain);
     }
@@ -552,8 +548,6 @@ export class ComboChartNewComponent extends BaseChartComponent {
       opts.domain = this.valueDomain;
       opts.colors = this.colors.scale;
     }
-
-    console.log(opts);
 
     return opts;
   }

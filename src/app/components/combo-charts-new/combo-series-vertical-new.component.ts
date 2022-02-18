@@ -141,8 +141,6 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
   }
 
   update(): void {
-
-    console.log('series: ' + JSON.stringify(this.series))
     this.updateTooltipSettings();
     let width;
     if (this.series.length) {
