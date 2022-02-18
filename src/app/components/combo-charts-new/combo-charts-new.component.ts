@@ -373,7 +373,9 @@ export class ComboChartNewComponent extends BaseChartComponent {
     let max = Math.max(...values);
 
     const num_digits1 = Math.floor(Math.log10(max)) + 1;
-    max = Math.ceil(max/Math.pow(10,num_digits1-1))*Math.pow(10,num_digits1-1);
+    max =
+      Math.ceil(max / Math.pow(10, num_digits1 - 1)) *
+      Math.pow(10, num_digits1 - 1);
 
     //const max = this.yScaleMax ? this.yScaleMax : Math.max(...values);
 
@@ -506,9 +508,13 @@ export class ComboChartNewComponent extends BaseChartComponent {
     return `translate(${this.groupScale(group.label)}, 0)`;
   }
 
-  trackBy: TrackByFunction<DataItem> = (index: number, item: DataItem) => {
-    return item.name;
-  };
+  // trackBy: TrackByFunction<DataItem> = (index: number, item: DataItem) => {
+  //   return item.name;
+  // };
+
+  trackBy(_index: any, item: any): string {
+    return `${item.name}`;
+  }
 
   setColors(): void {
     let domain;
@@ -625,20 +631,27 @@ export class ComboChartNewComponent extends BaseChartComponent {
       if (fromLegend) {
         return i.label !== item.name;
       } else {
-        return (i.name === item.name && i.value === item.value && i.series === item.series);
+        return (
+          i.name === item.name &&
+          i.value === item.value &&
+          i.series === item.series
+        );
       }
     });
 
-    const idx = this.activeEntries.findIndex(d => {
-      return d.name === item.name && d.value === item.value && d.series === item.series;
+    const idx = this.activeEntries.findIndex((d) => {
+      return (
+        d.name === item.name &&
+        d.value === item.value &&
+        d.series === item.series
+      );
     });
-  
+
     this.activeEntries.splice(idx, 1);
     this.activeEntries = [...this.activeEntries];
 
     this.deactivate.emit({ value: item, entries: this.activeEntries });
   }
-  
 
   updateLineWidth(width: any): void {
     this.bandwidth = width;
