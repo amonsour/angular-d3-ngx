@@ -18,7 +18,6 @@ import {
   Bar,
   ViewDimensions,
   BarChartType,
-  DataItem,
   ColorHelper,
   StringOrNumberOrDate,
   D0Types,
@@ -26,6 +25,8 @@ import {
   escapeLabel,
 } from '@swimlane/ngx-charts';
 import { isPlatformServer } from '@angular/common';
+
+import { DataItem } from 'src/app/chart-data.model';
 
 @Component({
   selector: 'g[ngx-combo-charts-series-vertical-new]',
@@ -141,6 +142,8 @@ export class ComboSeriesVerticalNewComponent implements OnChanges {
   }
 
   update(): void {
+
+    console.log('series: ' + JSON.stringify(this.series))
     this.updateTooltipSettings();
     let width;
     if (this.series.length) {
