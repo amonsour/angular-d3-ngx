@@ -631,12 +631,20 @@ export class ComboChartNewComponent extends BaseChartComponent {
       if (fromLegend) {
         return i.label !== item.name;
       } else {
-        return !(i.name === item.name && i.series === item.series);
+        return (i.name === item.name && i.value === item.value && i.series === item.series);
       }
     });
 
+    const idx = this.activeEntries.findIndex(d => {
+      return d.name === item.name && d.value === item.value && d.series === item.series;
+    });
+  
+    this.activeEntries.splice(idx, 1);
+    this.activeEntries = [...this.activeEntries];
+
     this.deactivate.emit({ value: item, entries: this.activeEntries });
   }
+  
 
   updateLineWidth(width: any): void {
     this.bandwidth = width;
