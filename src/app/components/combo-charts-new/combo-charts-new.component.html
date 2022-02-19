@@ -1,5 +1,5 @@
 <ngx-charts-chart
-  [view]="[width, height]"
+  [view]="[width + legendSpacing, height]"
   [showLegend]="legend"
   [legendOptions]="legendOptions"
   [activeEntries]="activeEntries"
@@ -58,6 +58,7 @@
       [labelText]="yAxisLabelRight"
       [tickFormatting]="yRightAxisTickFormatting"
       (dimensionsChanged)="updateYAxisWidth($event)"
+      style="fill: #f37d35;;"
     ></svg:g>
 
     <svg:g

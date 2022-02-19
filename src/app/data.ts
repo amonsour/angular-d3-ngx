@@ -188,6 +188,8 @@ export const BARCHART2: lineChart[] = [
   },
 ];
 
+
+
 export const GROUPS: Data[] = [
   { id: 1, date: '08/08/2021', value: 212 },
   { id: 2, date: '08/09/2021', value: 168 },

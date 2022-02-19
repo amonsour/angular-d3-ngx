@@ -98,6 +98,7 @@ export class ComboChartNewComponent extends BaseChartComponent {
   @Input() xScaleMin: number;
   @Input() xScaleMax: number;
   @Input() rangeFillOpacity!: number;
+  @Input() colorLabelRight: string;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
@@ -183,9 +184,9 @@ export class ComboChartNewComponent extends BaseChartComponent {
     if (!this.yAxis) {
       this.legendSpacing = 0;
     } else if (this.showYAxisLabel && this.yAxis) {
-      this.legendSpacing = 100;
+      this.legendSpacing = 60;
     } else {
-      this.legendSpacing = 40;
+      this.legendSpacing = 60;
     }
 
     this.formatDates();
@@ -569,8 +570,13 @@ export class ComboChartNewComponent extends BaseChartComponent {
     return opts;
   }
 
+  updateLineWidth(width: any): void {
+    this.bandwidth = width;
+    this.scaleLines();
+  }
+  
   updateYAxisWidth({ width }: { width: number }): void {
-    this.yAxisWidth = width;
+    this.yAxisWidth = width + 20;
     this.update();
   }
 
@@ -662,11 +668,6 @@ export class ComboChartNewComponent extends BaseChartComponent {
     this.activeEntries = [...this.activeEntries];
 
     this.deactivate.emit({ value: item, entries: this.activeEntries });
-  }
-
-  updateLineWidth(width: any): void {
-    this.bandwidth = width;
-    this.scaleLines();
   }
 
   onDataLabelMaxHeightChanged(event, groupIndex: number): void {

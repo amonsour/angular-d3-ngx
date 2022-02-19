@@ -1,6 +1,7 @@
 <app-card card-title="Combo Grouped Bar and Line Graph" title-tooltip="amazing!" [h]="40">
     <div class="h-100">
       <combo-chart-new-component
+        [view]="view"
         [scheme]="comboBarScheme"
         [colorSchemeLine]="lineChartScheme"
         [results]="barChart"
@@ -27,6 +28,7 @@
         [noBarWhenZero]="noBarWhenZero"
         [barPadding]="barPadding"
         [groupPadding]="groupPadding"
+        [colorLabelRight]="colorLabelRight"
         (select)="onSelect($event)"
       >
       </combo-chart-new-component>

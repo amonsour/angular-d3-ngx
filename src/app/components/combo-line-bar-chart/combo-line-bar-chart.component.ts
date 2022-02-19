@@ -22,7 +22,7 @@ export class ComboLineBarChartComponent implements OnInit {
   view: [number, number];
   width: number = 1020;
   height: number = 400;
-  fitContainer: boolean = true;
+  fitContainer: boolean = false;
 
   // options
   showXAxis = true;
@@ -49,6 +49,7 @@ export class ComboLineBarChartComponent implements OnInit {
   showDataLabel: boolean = false;
   noBarWhenZero: boolean = false;
   rotateXAxisTicks: boolean = true;
+  colorLabelRight: string = 'fill: #f37d35';
   
   // Combo Chart
   
@@ -80,7 +81,7 @@ export class ComboLineBarChartComponent implements OnInit {
   }
 
   applyDimensions() {
-    this.view = [this.width-50, this.height];
+    this.view = [this.width, this.height];
   }
 
   getData(): void {
