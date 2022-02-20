@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
-import { formatLabel, PlacementTypes, StyleTypes, BarOrientation  } from '@swimlane/ngx-charts';
+import { formatLabel, PlacementTypes, StyleTypes, BarOrientation } from '@swimlane/ngx-charts';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -47,17 +47,17 @@ import { formatLabel, PlacementTypes, StyleTypes, BarOrientation  } from '@swiml
   ]
 })
 export class ComboSeriesVerticalComponent implements OnChanges {
-  @Input() dims: any;
+  @Input() dims;
   @Input() type = 'standard';
-  @Input() series!: any[];
-  @Input() seriesLine: any;
-  @Input() xScale: any;
-  @Input() yScale: any;
-  @Input() colors: any;
+  @Input() series;
+  @Input() seriesLine;
+  @Input() xScale;
+  @Input() yScale;
+  @Input() colors;
   @Input() tooltipDisabled: boolean = false;
-  @Input() gradient!: boolean;
-  @Input() activeEntries!: any[];
-  @Input() seriesName!: string;
+  @Input() gradient: boolean;
+  @Input() activeEntries: any[];
+  @Input() seriesName: string;
   @Input() animations: boolean = true;
   @Input() noBarWhenZero: boolean = true;
 
@@ -74,19 +74,19 @@ export class ComboSeriesVerticalComponent implements OnChanges {
   barOrientation = BarOrientation;
   styleTypes = StyleTypes;
 
-  ngOnChanges(changes: any): void {
+  ngOnChanges(changes): void {
     this.update();
   }
 
   update(): void {
-    let width: any;
+    let width;
     if (this.series.length) {
       width = this.xScale.bandwidth();
       this.bandwidth.emit(width);
     }
 
     let d0 = 0;
-    let total: number;
+    let total;
     if (this.type === 'normalized') {
       total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
     }
@@ -176,12 +176,12 @@ export class ComboSeriesVerticalComponent implements OnChanges {
       return bar;
     });
   }
-  getSeriesTooltips(seriesLine: any[], index: number) {
+  getSeriesTooltips(seriesLine, index) {
     return seriesLine.map(d => {
       return d.series[index];
     });
   }
-  isActive(entry: any): boolean {
+  isActive(entry): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name && entry.series === d.series;
@@ -189,11 +189,11 @@ export class ComboSeriesVerticalComponent implements OnChanges {
     return item !== undefined;
   }
 
-  onClick(data: any): void {
+  onClick(data): void {
     this.select.emit(data);
   }
 
-  trackBy(_index: any, bar: any): string {
+  trackBy(index, bar): string {
     return bar.label;
   }
 }

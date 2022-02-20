@@ -35,74 +35,74 @@ export class ComboChartComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
-  @Input() xAxis: any;
-  @Input() yAxis: any;
-  @Input() showXAxisLabel: any;
-  @Input() showYAxisLabel: any;
-  @Input() showRightYAxisLabel: any;
-  @Input() xAxisLabel: any;
-  @Input() yAxisLabel: any;
-  @Input() yAxisLabelRight: any;
+  @Input() xAxis;
+  @Input() yAxis;
+  @Input() showXAxisLabel;
+  @Input() showYAxisLabel;
+  @Input() showRightYAxisLabel;
+  @Input() xAxisLabel;
+  @Input() yAxisLabel;
+  @Input() yAxisLabelRight;
   @Input() tooltipDisabled: boolean = false;
-  @Input() gradient: boolean = false;
+  @Input() gradient: boolean;
   @Input() showGridLines: boolean = true;
   @Input() activeEntries: any[] = [];
-  @Input() override schemeType!: ScaleType;
+  @Input() schemeType: ScaleType;
   @Input() xAxisTickFormatting: any;
   @Input() yAxisTickFormatting: any;
   @Input() yRightAxisTickFormatting: any;
   @Input() roundDomains: boolean = false;
-  @Input() colorSchemeLine!: Color;
-  @Input() autoScale: any;
+  @Input() colorSchemeLine: Color;
+  @Input() autoScale;
   @Input() lineChart: any;
   @Input() yLeftAxisScaleFactor: any;
   @Input() yRightAxisScaleFactor: any;
-  @Input() rangeFillOpacity!: number;
-  @Input() override animations: boolean = true;
+  @Input() rangeFillOpacity: number;
+  @Input() animations: boolean = true;
   @Input() noBarWhenZero: boolean = true;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate') tooltipTemplate!: TemplateRef<any>;
-  @ContentChild('seriesTooltipTemplate') seriesTooltipTemplate!: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
+  @ContentChild('seriesTooltipTemplate') seriesTooltipTemplate: TemplateRef<any>;
 
-  @ViewChild(LineSeriesComponent) lineSeriesComponent!: LineSeriesComponent;
+  @ViewChild(LineSeriesComponent) lineSeriesComponent: LineSeriesComponent;
 
-  dims!: ViewDimensions;
+  dims: ViewDimensions;
   xScale: any;
   yScale: any;
   xDomain: any;
   yDomain: any;
-  transform!: string;
-  colors!: ColorHelper;
-  colorsLine!: ColorHelper;
+  transform: string;
+  colors: ColorHelper;
+  colorsLine: ColorHelper;
   margin: any[] = [10, 20, 10, 20];
   xAxisHeight: number = 0;
   yAxisWidth: number = 0;
   legendOptions: any;
   scaleType = ScaleType.Linear;
-  xScaleLine: any;
-  yScaleLine: any;
-  xDomainLine!: any;
-  yDomainLine!: any;
-  seriesDomain!: any;
-  scaledAxis: any;
-  combinedSeries: any;
-  xSet: any;
-  filteredDomain: any;
-  hoveredVertical!: null;
+  xScaleLine;
+  yScaleLine;
+  xDomainLine;
+  yDomainLine;
+  seriesDomain;
+  scaledAxis;
+  combinedSeries;
+  xSet;
+  filteredDomain;
+  hoveredVertical;
   yOrientLeft = Orientation.Left;
   yOrientRight = Orientation.Right;
   legendSpacing = 0;
-  bandwidth: any;
+  bandwidth;
   barPadding = 8;
-  
-  trackBy(_index: any, item: any): string {
+
+  trackBy(index, item): string {
     return `${item.name}`;
   }
 
-  override update(): void {
+  update(): void {
     super.update();
     this.dims = calculateViewDimensions({
       width: this.width,
@@ -128,8 +128,6 @@ export class ComboChartComponent extends BaseChartComponent {
     }
     this.xScale = this.getXScale();
     this.yScale = this.getYScale();
-
-    console.log(this.results)
 
     // line chart
     this.xDomainLine = this.getXDomainLine();
@@ -162,12 +160,12 @@ export class ComboChartComponent extends BaseChartComponent {
     this.deactivateAll();
   }
 
-  updateHoveredVertical(item: any): void {
+  updateHoveredVertical(item): void {
     this.hoveredVertical = item.value;
     this.deactivateAll();
   }
 
-  updateDomain(domain: any): void {
+  updateDomain(domain): void {
     this.filteredDomain = domain;
     this.xDomainLine = this.filteredDomain;
     this.xScaleLine = this.getXScaleLine(this.xDomainLine, this.dims.width);
@@ -184,10 +182,10 @@ export class ComboChartComponent extends BaseChartComponent {
       name: this.yAxisLabel,
       series: this.results
     });
-    return this.combinedSeries.map((d: { name: any; }) => d.name);
+    return this.combinedSeries.map(d => d.name);
   }
 
-  isDate(value: any): boolean {
+  isDate(value): boolean {
     if (value instanceof Date) {
       return true;
     }
@@ -195,7 +193,7 @@ export class ComboChartComponent extends BaseChartComponent {
     return false;
   }
 
-  getScaleType(values: any): ScaleType {
+  getScaleType(values): ScaleType {
     let date = true;
     let num = true;
 
@@ -221,7 +219,7 @@ export class ComboChartComponent extends BaseChartComponent {
   }
 
   getXDomainLine(): any[] {
-    let values: any[] = [];
+    let values = [];
 
     for (const results of this.lineChart) {
       for (const d of results.series) {
@@ -283,16 +281,12 @@ export class ComboChartComponent extends BaseChartComponent {
     }
   }
 
-  getXScaleLine(domain: any, width: any): any {
+  getXScaleLine(domain, width): any {
     let scale;
     if (this.bandwidth === undefined) {
       this.bandwidth = width - this.barPadding;
-      console.log('bandwidth: ' + this.bandwidth)
     }
     const offset = Math.floor((width + this.barPadding - (this.bandwidth + this.barPadding) * domain.length) / 2);
-
-    console.log(' width: ' + width + ' barPadding: ' + this.barPadding + ' offset: ' + offset + ' bandwidth: ' + this.bandwidth + ' domain: ' + domain)
-    console.log('1st: ' + ( offset + this.bandwidth / 2 ) + ' 2nd: ' + (width - offset - this.bandwidth / 2) )
 
     if (this.scaleType === 'time') {
       scale = scaleTime().range([0, width]).domain(domain);
@@ -311,7 +305,7 @@ export class ComboChartComponent extends BaseChartComponent {
     return scale;
   }
 
-  getYScaleLine(domain: any, height: any): any {
+  getYScaleLine(domain, height): any {
     const scale = scaleLinear().range([height, 0]).domain(domain);
 
     return this.roundDomains ? scale.nice() : scale;
@@ -330,11 +324,11 @@ export class ComboChartComponent extends BaseChartComponent {
   }
 
   getXDomain(): any[] {
-    return this.results.map((d: { name: any; }) => d.name);
+    return this.results.map(d => d.name);
   }
 
   getYDomain() {
-    const values = this.results.map((d: { value: any; }) => d.value);
+    const values = this.results.map(d => d.value);
     const min = Math.min(0, ...values);
     const max = Math.max(...values);
     if (this.yLeftAxisScaleFactor) {
@@ -345,7 +339,7 @@ export class ComboChartComponent extends BaseChartComponent {
     }
   }
 
-  onClick(data: any) {
+  onClick(data) {
     this.select.emit(data);
   }
 
@@ -362,11 +356,11 @@ export class ComboChartComponent extends BaseChartComponent {
 
   getLegendOptions() {
     const opts = {
-      scaleType: this.schemeType as ScaleType,
-      colors: undefined as any,
-      domain: [] as any[],
-      title: undefined as any,
-      position: this.legendPosition as string
+      scaleType: this.schemeType,
+      colors: undefined,
+      domain: [],
+      title: undefined,
+      position: this.legendPosition
     };
     if (opts.scaleType === ScaleType.Ordinal) {
       opts.domain = this.seriesDomain;
@@ -376,27 +370,25 @@ export class ComboChartComponent extends BaseChartComponent {
       opts.domain = this.seriesDomain;
       opts.colors = this.colors.scale;
     }
-
-    console.log(opts)
     return opts;
   }
 
-  updateLineWidth(width: any): void {
+  updateLineWidth(width): void {
     this.bandwidth = width;
     this.scaleLines();
   }
 
-  updateYAxisWidth({ width }: any): void {
+  updateYAxisWidth({ width }): void {
     this.yAxisWidth = width + 20;
     this.update();
   }
 
-  updateXAxisHeight({ height }: any): void {
+  updateXAxisHeight({ height }): void {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onActivate(item: any) {
+  onActivate(item) {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });
@@ -408,7 +400,7 @@ export class ComboChartComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item: any) {
+  onDeactivate(item) {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value && d.series === item.series;
     });

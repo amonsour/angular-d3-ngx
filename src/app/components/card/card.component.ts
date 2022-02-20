@@ -13,7 +13,9 @@ import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
         >
           <span [ngbPopover]="tooltip">{{ title }}</span>
         </h3>
+        <div [style.marginRight.px]="yAxis ? 60 : 0">
         <ng-content></ng-content>
+</div>
       </div>
     </div>
   `,
@@ -23,6 +25,7 @@ export class CardComponent {
   @Input('card-title') title: string = '';
   @Input('title-tooltip') tooltip: string = '';
   @Input('h') h: number = 0;
+  @Input('yAxis') yAxis: boolean = false;
 
   constructor(config: NgbPopoverConfig) {
     config.disablePopover = this.tooltip !== '';

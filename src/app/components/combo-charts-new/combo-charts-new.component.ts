@@ -99,6 +99,8 @@ export class ComboChartNewComponent extends BaseChartComponent {
   @Input() xScaleMax: number;
   @Input() rangeFillOpacity!: number;
   @Input() colorLabelRight: string;
+  @Input() colorLabelDefault: string;
+  @Input() colorLabelLeft: string;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
